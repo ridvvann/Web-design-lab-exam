@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online University Attendance System</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <style>
+        :root {
+            --primary: rgb(119, 0, 255);
+            --primary-light: #ebf2ff;
+            --text: #1f2937;
+            --text-light: #6b7280;
+            --border: #e5e7eb;
+            --bg: #f9fafb;
+            --hover: #f3f4f6;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .dashboard {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 260px;
+            background: white;
+            border-right: 1px solid var(--border);
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            z-index: 10;
+        }
+
+        .logo {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 2.5rem;
+            color: var(--primary);
+            padding: 0.5rem 0;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo i {
+            margin-right: 0.75rem;
+        }
+
+        .nav-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .nav-title {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--text-light);
+            margin-bottom: 1rem;
+            padding-left: 0.5rem;
+        }
+
+        .nav-link {
+            display: flex;
+            align-items: center;
+            padding: 0.75rem;
+            border-radius: 6px;
+            color: var(--text);
+            text-decoration: none;
+            font-size: 0.95rem;
+            margin-bottom: 0.25rem;
+            transition: all 0.15s ease;
+            position: relative;
+        }
+
+        .nav-link i {
+            margin-right: 0.75rem;
+            width: 20px;
+            text-align: center;
+            font-size: 1.1rem;
+            color: var(--text-light);
+            transition: all 0.15s ease;
+        }
+
+        .nav-link:hover, .nav-link:focus {
+            background-color: var(--hover);
+            color: var(--primary);
+        }
+
+        .nav-link:hover i, .nav-link:focus i {
+            color: var(--primary);
+        }
+
+        .nav-link.active {
+            background-color: var(--primary-light);
+            color: var(--primary);
+            font-weight: 500;
+        }
+
+        .nav-link.active i {
+            color: var(--primary);
+        }
+
+        .submenu {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            padding-left: 2rem;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .nav-link:focus + .submenu,
+        .nav-link:active + .submenu {
+            max-height: 500px;
+        }
+
+
+        .submenu-item {
+            color: var(--text-light);
+            text-decoration: none;
+            transition: all 0.15s ease;
+            padding: 0.5rem 0;
+            color: var(--text-light);
+            font-size: 0.875rem;
+            transition: all 0.15s ease;
+        }
+
+        .submenu-item:hover {
+            color: var(--primary);
+        }
+
+        /* Main Content */
+        .main {
+            flex: 1;
+            padding: 2rem;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .page-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--primary-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.15s ease;
+        }
+
+        .user-avatar:hover {
+            transform: scale(1.05);
+        }
+
+        .stats-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .stat-card {
+            background: var(--primary);
+            height:7rem;
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        .stat-title {
+            font-size: 1rem;
+            color: #cec9d6;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-value {
+            font-size: 1.9rem;
+            font-weight: 600;
+            color: #fff;
+        }
+
+        .chart-container {
+            background: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+            margin-bottom: 2rem;
+            transition: all 0.2s ease;
+        }
+
+        .chart-container:hover {
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        .chart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .chart-title {
+            font-size: 1.125rem;
+            font-weight: 500;
+        }
+
+        .chart-period {
+            color: var(--text-light);
+            font-size: 0.875rem;
+        }
+
+        .chart-placeholder {
+            height: 300px;
+            background-color: var(--bg);
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-light);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .chart-placeholder::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.5), transparent);
+            animation: shimmer 1.5s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        .chart-legend {
+            display: flex;
+            justify-content: center;
+            margin-top: 1rem;
+            gap: 1.5rem;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            font-size: 0.875rem;
+        }
+
+        .legend-color {
+            width: 12px;
+            height: 12px;
+            margin-right: 0.5rem;
+            border-radius: 2px;
+        }
+
+        .color-primary {
+            background-color: var(--primary);
+        }
+
+        .color-border {
+            background-color: var(--border);
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .dashboard {
+                flex-direction: column;
+            }
+            
+            .sidebar {
+                width: 100%;
+                padding: 1rem;
+            }
+            
+            .main {
+                padding: 1.5rem;
+            }
+            
+            .stats-container {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .stats-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .chart-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard">
+        <div class="sidebar">
+            <div class="logo">
+                <i class="bi bi-clipboard2-check"></i>
+                Attendance System
+            </div>
+            
+            <div class="nav-group">
+                <div class="nav-title">Main</div>
+                <a href="admin-dashboard.html" class="nav-link active">
+                    <i class="bi bi-speedometer2"></i>
+                    Dashboard
+                </a>
+            </div>
+            
+            <div class="nav-group">
+                <div class="nav-title">Management</div>
+                <a href="#" class="nav-link" tabindex="0">
+                    <i class="bi bi-person-badge"></i>
+                    Deans
+                </a>
+                <div class="submenu">
+                    <a class="submenu-item" href="Register-dean.html">Register Dean</a>
+                    <a class="submenu-item" href="view-deans.html">View All Deans</a>
+                </div>
+                
+                <a href="#" class="nav-link" tabindex="0">
+                    <i class="bi bi-person-badge"></i>
+                    Teachers
+                </a>
+                <div class="submenu">
+                    <a class="submenu-item" href="Register-teacher.html">Register Reacher</a>
+                    <a class="submenu-item" href="view-teachers.html">View All Teachers</a>
+                </div>
+                
+                <a href="#" class="nav-link">
+                    <i class="bi bi-people"></i>
+                    Students
+                </a>
+                <a href="#" class="nav-link">
+                    <i class="bi bi-person-arms-up"></i>
+                    Parents
+                </a>
+                <a href="#" class="nav-link">
+                    <i class="bi bi-building"></i>
+                    Departments
+                </a>
+                <a href="#" class="nav-link">
+                    <i class="bi bi-mortarboard"></i>
+                    Classes
+                </a>
+                <a href="#" class="nav-link">
+                    <i class="bi bi-journal-bookmark"></i>
+                    Courses
+                </a>
+            </div>
+            
+            <div class="nav-group">
+                <div class="nav-title">Reports</div>
+                <a href="#" class="nav-link">
+                    <i class="bi bi-megaphone"></i>
+                    Notice
+                </a>
+                <a href="#" class="nav-link">
+                    <i class="bi bi-file-earmark-text"></i>
+                    Reports
+                </a>
+            </div>
+        </div>
+        
+        <div class="main">
+            <div class="header">
+                <h1 class="page-title">Dashboard</h1>
+                <div class="user-info">
+                    <div class="user-avatar" tabindex="0" aria-label="User profile">
+                        AD
+                    </div>
+                </div>
+            </div>
+            
+<div class="register-form">
+    <h2>Register New Teacher</h2>
+    <form action="#" method="POST" class="dean-registration">
+        <div class="form-section">
+            <h3>Personal Information</h3>
+            <div class="form-group">
+                <label for="firstName">First Name*</label>
+                <input type="text" id="firstName" name="firstName" required>
+            </div>
+            <div class="form-group">
+                <label for="lastName">Last Name*</label>
+                <input type="text" id="lastName" name="lastName" required>
+            </div>
+            <div class="form-group">
+                <label for="dob">Date of Birth*</label>
+                <input type="date" id="dob" name="dob" required>
+            </div>
+            <div class="form-group">
+                <label for="gender">Gender*</label>
+                <select id="gender" name="gender" required>
+                    <option value="">Select Gender</option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-section">
+            <h3>Contact Information</h3>
+            <div class="form-group">
+                <label for="email">Email Address*</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="phone">Phone Number*</label>
+                <input type="tel" id="phone" name="phone" required>
+            </div>
+            <div class="form-group">
+                <label for="address">Address*</label>
+                <textarea id="address" name="address" required></textarea>
+            </div>
+        </div>
+
+        <div class="form-section">
+            <h3>Academic Information</h3>
+            <div class="form-group">
+                <label for="qualification">Highest Qualification*</label>
+                <input type="text" id="qualification" name="qualification" required>
+            </div>
+            <div class="form-group">
+                <label for="specialization">Specialization*</label>
+                <input type="text" id="specialization" name="specialization" required>
+            </div>
+            <div class="form-group">
+                <label for="experience">Years of Experience*</label>
+                <input type="number" id="experience" name="experience" min="0" required>
+            </div>
+            <div class="form-group">
+                <label for="department">Department*</label>
+                <select id="department" name="department" required>
+                    <option value="">Select Department</option>
+                    <option value="engineering">Engineering</option>
+                    <option value="science">Science</option>
+                    <option value="arts">Arts</option>
+                    <option value="business">Business</option>
+                    <option value="medicine">Medicine</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-section">
+            <h3>Employment Details</h3>
+            <div class="form-group">
+                <label for="employmentDate">Employment Start Date*</label>
+                <input type="date" id="employmentDate" name="employmentDate" required>
+            </div>
+            <div class="form-group">
+                <label for="employeeId">Employee ID*</label>
+                <input type="text" id="employeeId" name="employeeId" required>
+            </div>
+            <div class="form-group">
+                <label for="salary">Annual Salary*</label>
+                <input type="number" id="salary" name="salary" min="0" required>
+            </div>
+        </div>
+
+        <div class="form-section">
+            <h3>Account Setup</h3>
+            <div class="form-group">
+                <label for="username">Username*</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password*</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <div class="form-group">
+                <label for="confirmPassword">Confirm Password*</label>
+                <input type="password" id="confirmPassword" name="confirmPassword" required>
+            </div>
+        </div>
+
+        <div class="form-actions">
+            <button type="submit" class="submit-btn">Register Teacher</button>
+            <button type="reset" class="reset-btn">Reset Form</button>
+        </div>
+    </form>
+</div>
+
+<style>
+.register-form {
+    background: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.register-form h2 {
+    margin-bottom: 2rem;
+    color: var(--primary);
+}
+
+.form-section {
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border);
+}
+
+.form-section h3 {
+    margin-bottom: 1rem;
+    color: var(--text);
+    font-size: 1.1rem;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--text);
+    font-size: 0.9rem;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    font-size: 0.95rem;
+    transition: border-color 0.15s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    border-color: var(--primary);
+    outline: none;
+}
+
+.form-group textarea {
+    height: 100px;
+    resize: vertical;
+}
+
+.form-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.submit-btn,
+.reset-btn {
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 4px;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+.submit-btn {
+    background: var(--primary);
+    color: white;
+}
+
+.submit-btn:hover {
+    opacity: 0.9;
+}
+
+.reset-btn {
+    background: var(--hover);
+    color: var(--text);
+}
+
+.reset-btn:hover {
+    background: var(--border);
+}
+
+@media (max-width: 768px) {
+    .register-form {
+        padding: 1.5rem;
+    }
+    
+    .form-actions {
+        flex-direction: column;
+    }
+    
+    .submit-btn,
+    .reset-btn {
+        width: 100%;
+    }
+}
+</style>
+        </div>
+    </div>
+</body>
+</html>

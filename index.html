@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Noodle</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <style>
+        * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+    --main-color :  rgb(119, 0, 255);
+    }
+    body {
+        font-family: 'Montserrat', sans-serif;
+        background-color: rgb(119, 0, 255);
+    }
+
+    .container {
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    h1 {
+        color: #fff;
+        font-size: 2.5rem;
+        text-align: center;
+        width: 50%;
+        margin-bottom: 20px;
+    }
+    form {
+        width: 400px;
+        height: 300px;
+        background-color: #fff;
+        border-radius: 10px;
+        padding: 10px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+    }
+    input {
+        width: 80%;
+        height: 40px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        padding-left: 10px;
+        font-size: 1.2rem;
+        outline: none;
+    }
+    input::placeholder {
+        color: #797878;
+        font-size: 0.9rem;
+    }
+    input:focus {
+        border: 1px solid var(--main-color);
+    }
+    select {
+        width: 80%;
+        height: 40px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        padding-left: 10px;
+        font-size: 1.2rem;
+    }
+    select option {
+        font-size: 1.2rem;
+    }
+    select:focus {
+        border: 1px solid var(--main-color);
+    }
+    form h2 {
+        font-size: 1.5rem;
+        color: var(--main-color);
+        text-align: center;
+    }
+    form a {
+        width: 80%;
+        text-decoration: none;
+        background-color: var(--main-color);
+        color: #fff;
+        padding: 10px 20px;
+        border-radius: 5px;
+        font-size: 1.2rem;
+        text-align: center;
+        transition: all 0.3s ease-in-out;
+    }
+    form a:hover {
+        background-color: #fff;
+        color: var(--main-color);
+        border: 1px solid var(--main-color);
+    }
+    </style>
+    <div class="container">
+        <h1>University Online Student Attendance System</h1>
+        <div class="login-box">
+            <form>
+                <h2>Sign in Your Account</h2>
+                <select name="user-type">
+                    <option value="admin">Admin</option>
+                    <option value="student">Student</option>
+                    <option value="teacher">Teacher</option>
+                    <option value="admin">Admin</option>
+                </select>
+                <input type="text" name="username" placeholder="Enter Username">
+                <input type="password" name="password" placeholder="Enter Password">
+                <a  href="Admin-dashboard.html" type="submit">Login</a>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

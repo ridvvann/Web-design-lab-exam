@@ -348,7 +348,7 @@
             
             <div class="nav-group">
                 <div class="nav-title">Main</div>
-                <a href="dean-dashboard.html" class="nav-link active">
+                <a href="Teacher-Dashboard.html" class="nav-link active">
                     <i class="bi bi-speedometer2"></i>
                     Dashboard
                 </a>
@@ -357,27 +357,22 @@
             <div class="nav-group">
                 <div class="nav-title">Management</div>
                 
-                <a href="#" class="nav-link" tabindex="0">
-                    <i class="bi bi-person-badge"></i>
-                    Teachers
-                </a>
-                <div class="submenu">
-                    <a class="submenu-item" href="Register-Teacher-Dean.html">Register Reacher</a>
-                    <a class="submenu-item" href="View-Teachers-dean.html">View All Teachers</a>
-                </div>
-                
                 <a href="#" class="nav-link">
                     <i class="bi bi-people"></i>
                     Students
                 </a>
                 <div class="submenu">
-                    <a class="submenu-item" href="Register-Student-Dean.html">Register Student</a>
-                    <a class="submenu-item" href="View-Students-dean.html">View All Students</a>
+                    <a class="submenu-item" href="register-student-teacher.html">Register Student</a>
+                    <a class="submenu-item" href="View-Students-teacher.html">View All Students</a>
                 </div>
                 
                 <a href="#" class="nav-link">
                     <i class="bi bi-person-arms-up"></i>
                     Parents
+                </a>
+                <a href="#" class="nav-link">
+                    <i class="bi bi-building"></i>
+                    Departments
                 </a>
                 <a href="#" class="nav-link">
                     <i class="bi bi-mortarboard"></i>
@@ -391,48 +386,65 @@
         </div>
         
         <div class="main">
-            <div class="header">
-                <h1 class="page-title">Dashboard</h1>
-                <div class="user-info">
-                    <div class="user-avatar" tabindex="0" aria-label="User profile">
-                        AD
+                <div class="header">
+                    <h1 class="page-title">Dashboard</h1>
+                    <div class="user-info">
+                        <div class="user-avatar" tabindex="0" aria-label="User profile">
+                            AD
+                        </div>
                     </div>
                 </div>
-            </div>
-            
-            <div class="stats-container">
-                <div class="stat-card" tabindex="0">
-                    <div class="stat-title">Students</div>
-                    <div class="stat-value">1,800</div>
-                </div>
-                <div class="stat-card" tabindex="0">
-                    <div class="stat-title">Departments</div>
-                    <div class="stat-value">12</div>
-                </div>
-                <div class="stat-card" tabindex="0">
-                    <div class="stat-title">Classes</div>
-                    <div class="stat-value">4</div>
-                </div>
-            </div>
-            
-            <div class="chart-container">
-                <div class="chart-header">
-                    <h2 class="chart-title">Daily Attendance Count</h2>
-                    <div class="chart-period">January 2025</div>
-                </div>
-                <div class="chart-placeholder">
-                    [Attendance Chart Visualization]
-                </div>
-                <div class="chart-legend">
-                    <div class="legend-item">
-                        <div class="legend-color color-primary"></div>
-                        <span>Student Count</span>
-                    </div>
-                    <div class="legend-item">
-                        <div class="legend-color color-border"></div>
-                        <span>Attendance Count</span>
-                    </div>
-                </div>
+            <div class="table-container" style="background: white; padding: 1.5rem; border-radius: 8px; margin-top: 2rem;">
+                <h2 style="margin-bottom: 1rem;">Registered Teachers</h2>
+                <table style="width: 100%; border-collapse: collapse;">
+                    <thead>
+                        <tr style="border-bottom: 2px solid var(--border);">
+                            <th style="text-align: left; padding: 1rem; color: var(--text-light);">Name</th>
+                            <th style="text-align: left; padding: 1rem; color: var(--text-light);">Department</th>
+                            <th style="text-align: left; padding: 1rem; color: var(--text-light);">Email</th>
+                            <th style="text-align: left; padding: 1rem; color: var(--text-light);">Phone</th>
+                            <th style="text-align: left; padding: 1rem; color: var(--text-light);">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr style="border-bottom: 1px solid var(--border);">
+                            <td style="padding: 1rem;">Dr. Abdirahman Mohamed</td>
+                            <td style="padding: 1rem;">Computer Science</td>
+                            <td style="padding: 1rem;">abdirahman.m@university.edu</td>
+                            <td style="padding: 1rem;">+252 61 234 5678</td>
+                            <td style="padding: 1rem;">
+                                <button style="background: var(--primary); color: white; border: none; padding: 0.5rem 1rem; border-radius: 4px; cursor: pointer;">Edit</button>
+                            </td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid var(--border);">
+                            <td style="padding: 1rem;">Dr. Faduma Hassan</td>
+                            <td style="padding: 1rem;">Business Administration</td>
+                            <td style="padding: 1rem;">faduma.h@university.edu</td>
+                            <td style="padding: 1rem;">+252 61 876 5432</td>
+                            <td style="padding: 1rem;">
+                                <button style="background: var(--primary); color: white; border: none; padding: 0.5rem 1rem; border-radius: 4px; cursor: pointer;">Edit</button>
+                            </td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid var(--border);">
+                            <td style="padding: 1rem;">Dr. Yusuf Ahmed</td>
+                            <td style="padding: 1rem;">Engineering</td>
+                            <td style="padding: 1rem;">yusuf.a@university.edu</td>
+                            <td style="padding: 1rem;">+252 61 345 6789</td>
+                            <td style="padding: 1rem;">
+                                <button style="background: var(--primary); color: white; border: none; padding: 0.5rem 1rem; border-radius: 4px; cursor: pointer;">Edit</button>
+                            </td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid var(--border);">
+                            <td style="padding: 1rem;">Dr. Amina Omar</td>
+                            <td style="padding: 1rem;">Medicine</td>
+                            <td style="padding: 1rem;">amina.o@university.edu</td>
+                            <td style="padding: 1rem;">+252 61 987 6543</td>
+                            <td style="padding: 1rem;">
+                                <button style="background: var(--primary); color: white; border: none; padding: 0.5rem 1rem; border-radius: 4px; cursor: pointer;">Edit</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>

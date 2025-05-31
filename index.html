@@ -1,120 +1,106 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Noodle</title>
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>University Login</title>
+<style>
+  :root {
+    --main-color: rgb(119, 0, 255);
+  }
+  * {
+    margin: 0; padding: 0; box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+  }
+  body {
+    background-color: var(--main-color);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+  }
+  .container {
+    background: #fff;
+    color: var(--main-color);
+    padding: 40px 30px;
+    border-radius: 12px;
+    width: 360px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.25);
+  }
+  h1 {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  input[type="text"],
+  input[type="password"] {
+    padding: 12px 15px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    outline: none;
+    color: var(--main-color);
+  }
+  input[type="text"]:focus,
+  input[type="password"]:focus {
+    border-color: var(--main-color);
+    box-shadow: 0 0 6px var(--main-color);
+  }
+  /* Role links container */
+  .role-links {
+    margin-top: 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  .role-links a {
+    display: block;
+    background-color: var(--main-color);
+    color: white;
+    text-decoration: none;
+    padding: 14px;
+    border-radius: 8px;
+    font-weight: 600;
+    text-align: center;
+    transition: background-color 0.3s ease;
+  }
+  .role-links a:hover {
+    background-color: #7a00e6cc;
+  }
+  /* Login button disabled - no actual login logic */
+  button {
+    padding: 14px;
+    background-color: var(--main-color);
+    border: none;
+    color: white;
+    font-size: 1rem;
+    border-radius: 8px;
+    cursor: not-allowed;
+    opacity: 0.6;
+    margin-top: 15px;
+  }
+</style>
 </head>
 <body>
-    <style>
-        * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  <div class="container">
+    <h1>University Login</h1>
+    <form>
+      <input type="text" placeholder="Enter Username" disabled />
+      <input type="password" placeholder="Enter Password" disabled />
+      <button type="submit" disabled>Login</button>
+    </form>
 
-    --main-color :  rgb(119, 0, 255);
-    }
-    body {
-        font-family: 'Montserrat', sans-serif;
-        background-color: rgb(119, 0, 255);
-    }
-
-    .container {
-        width: 100%;
-        height: 100vh;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-    }
-    h1 {
-        color: #fff;
-        font-size: 2.5rem;
-        text-align: center;
-        width: 50%;
-        margin-bottom: 20px;
-    }
-    form {
-        width: 400px;
-        height: 300px;
-        background-color: #fff;
-        border-radius: 10px;
-        padding: 10px;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        gap: 10px;
-    }
-    input {
-        width: 80%;
-        height: 40px;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        padding-left: 10px;
-        font-size: 1.2rem;
-        outline: none;
-    }
-    input::placeholder {
-        color: #797878;
-        font-size: 0.9rem;
-    }
-    input:focus {
-        border: 1px solid var(--main-color);
-    }
-    select {
-        width: 80%;
-        height: 40px;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        padding-left: 10px;
-        font-size: 1.2rem;
-    }
-    select option {
-        font-size: 1.2rem;
-    }
-    select:focus {
-        border: 1px solid var(--main-color);
-    }
-    form h2 {
-        font-size: 1.5rem;
-        color: var(--main-color);
-        text-align: center;
-    }
-    form a {
-        width: 80%;
-        text-decoration: none;
-        background-color: var(--main-color);
-        color: #fff;
-        padding: 10px 20px;
-        border-radius: 5px;
-        font-size: 1.2rem;
-        text-align: center;
-        transition: all 0.3s ease-in-out;
-    }
-    form a:hover {
-        background-color: #fff;
-        color: var(--main-color);
-        border: 1px solid var(--main-color);
-    }
-    </style>
-    <div class="container">
-        <h1>University Online Student Attendance System</h1>
-        <div class="login-box">
-            <form>
-                <h2>Sign in Your Account</h2>
-                <select name="user-type">
-                    <option value="admin">Admin</option>
-                    <option value="student">Student</option>
-                    <option value="teacher">Teacher</option>
-                    <option value="admin">Admin</option>
-                </select>
-                <input type="text" name="username" placeholder="Enter Username">
-                <input type="password" name="password" placeholder="Enter Password">
-                <a  href="Admin-dashboard.html" type="submit">Login</a>
-            </form>
-        </div>
+    <div class="role-links" aria-label="Select role to login">
+      <a href="Admin-dashboard.html">Admin</a>
+      <a href="Dean-dashboard.html">Dean</a>
+      <a href="Teacher-dashboard.html">Teacher</a>
+      <a href="Parent-dashboard.html">Parent</a>
     </div>
+  </div>
 </body>
 </html>
